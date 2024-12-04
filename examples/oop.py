@@ -2,6 +2,10 @@
 import datetime
 
 
+class InvalidSpeedChange(ValueError):
+    pass
+
+
 class Vehicle:
     # Class attribute
     wheels = 0
@@ -15,17 +19,23 @@ class Vehicle:
         self.speed = 0
 
     def accelerate(self, increment):
-        if increment <= 0:
-            raise ValueError(f"Cannot accelerate with {increment}.")
+        self.validate_speed_change(increment)
         self.speed += increment
 
     def brake(self, decrement):
-        if decrement <= 0:
-            raise ValueError(f"Cannot brake with {decrement}.")
+        self.validate_speed_change(decrement)
         self.speed -= decrement
+
+    @staticmethod
+    def validate_speed_change(value):
+        if value <= 0:
+            raise InvalidSpeedChange(f"Cannot change speed by {value}")
 
     def display_speed(self):
         print("Current speed:", self.speed)
+
+    def __str__(self):
+        return f"{self.__class__.__name__} object <{self.make} {self.model}>"
 
 
 class Car(Vehicle):
@@ -50,7 +60,6 @@ if __name__ == "__main__":
     # dt = date(2000, 3, 4)
     dt = datetime.date(2000, 3, 4)  # datetime.date.__init__
     print(dt.year, datetime.date.max, dt.max)
-    # dt.year = 2001
 
     my_vehicle = Vehicle(color="green", brand="Dacia", model="Sandero")
     your_vehicle = Vehicle("white", "Audi")
@@ -76,7 +85,7 @@ if __name__ == "__main__":
 
     try:
         my_vehicle.accelerate(-1)
-    except ValueError as ex:
+    except InvalidSpeedChange as ex:
         print(ex)
 
     my_car = Car("white", "Dacia", "Logan", "gasoline")
@@ -85,3 +94,5 @@ if __name__ == "__main__":
     my_car.accelerate(100)
     my_car.display_speed()
     my_car.honk_horn()
+
+    print(my_vehicle, my_car)
