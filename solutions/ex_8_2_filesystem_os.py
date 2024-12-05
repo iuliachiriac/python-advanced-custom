@@ -2,7 +2,11 @@ import glob
 import os
 
 
-# Exercise 1
+# Write a Python program that creates a directory outdir at the current location
+# and a directory innerdir inside outdir. Create an empty file inside innerdir.
+# Use os.walk() to print the directory tree for outdir. Remove the directories
+# and the file.
+
 initial_path = os.getcwd()
 
 # v1
@@ -47,7 +51,9 @@ os.remove(empty_file_path)
 os.removedirs(innerdir_path)
 
 
-# Exercise 2
+# Write a function that returns a list (or iterator) of all the file names with
+# an extension from a directory. Give the path and the file extension as
+# parameters.
 
 # v1
 def get_directory_tree(path, extension):
