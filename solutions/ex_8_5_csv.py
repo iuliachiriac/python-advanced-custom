@@ -7,8 +7,6 @@
 from pathlib import Path
 import csv
 
-from pygments.styles.dracula import foreground
-
 # resolve will make the path absolute; it is needed to fetch the parent path
 current_path = Path().resolve()
 books_file = current_path.parent / "docs" / "books.csv"
