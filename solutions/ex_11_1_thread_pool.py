@@ -1,6 +1,8 @@
 import glob
+import itertools
 import time
 from pathlib import Path
+from multiprocessing.dummy import Pool as ThreadPool
 
 
 def search_term(filename, term):
@@ -8,6 +10,7 @@ def search_term(filename, term):
         try:
             for line in f:
                 if term in line:
+                    # pass
                     print(line, end="")
         except UnicodeDecodeError as ex:
             print(ex, filename)
@@ -22,8 +25,12 @@ def find_files(path, extension, /, *, recursive=False):
 
 
 def search_across_files(root_path, file_extension, term):
-    for filename in find_files(root_path, file_extension, recursive=True):
-        search_term(filename, term)
+    pool = ThreadPool(100)
+    filenames = find_files(root_path, file_extension, recursive=True)
+    result = pool.starmap(search_term, zip(filenames, itertools.repeat(term)))
+    pool.close()
+    pool.join()
+    return result
 
 
 if __name__ == "__main__":
