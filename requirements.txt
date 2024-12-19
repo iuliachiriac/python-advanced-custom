@@ -1,3 +1,4 @@
+Appium-Python-Client==4.4.0
 beautifulsoup4==4.12.3
 flake8==7.1.1
 jupyter==1.1.1

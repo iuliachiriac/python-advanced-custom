@@ -12,7 +12,7 @@ from selenium.webdriver.support import expected_conditions as EC
 # options = webdriver.ChromeOptions()
 # driver = webdriver.Chrome(service=service, options=options)
 
-sleep_time = 0
+sleep_time = 5
 
 driver = webdriver.Chrome()
 
