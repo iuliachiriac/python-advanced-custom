@@ -1,7 +1,7 @@
 import logging
 
 
-logger = logging.getLogger(__name__)
+logger = logging.getLogger("custom_logger")
 
 
 def my_func(x, y):

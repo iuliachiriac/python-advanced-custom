@@ -28,6 +28,6 @@ def search_across_files(root_path, file_extension, term):
 
 if __name__ == "__main__":
     time_start = time.time()
-    search_across_files("../..", "py", "import")
+    search_across_files("..", "py", "import")
     time_diff = time.time() - time_start
     print(f"Execution took {time_diff}s.")

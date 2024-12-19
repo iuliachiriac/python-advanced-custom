@@ -2,7 +2,7 @@ import logging
 import logging_other_module
 
 # Step 2: Create a custom logger
-logger = logging.getLogger('custom_logger')
+logger = logging.getLogger('root')
 logger.setLevel(logging.DEBUG)
 
 # Step 3: Create handlers
